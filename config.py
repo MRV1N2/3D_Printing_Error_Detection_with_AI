@@ -8,9 +8,9 @@ OPTUNA_DATABASE_PATH = 'sqlite:///ai_3d_printing_error_detection.db'
 BATCH_SIZE = [8, 16, 32, 64]
 IOU_LOSS_THRESH = [0.1, 0.9]
 IOU_THRESHOLD = [0.1, 0.9]
-SCORE_THRESHOLD = [0.1,0.9]
+SCORE_THRESHOLD = [0.1, 0.9]
 
-# This Yolo config,will be overwritten by optuna
+# This Yolo config, will be overwritten by optuna
 # ToDo find script to set anchors
 yolo_config = {
     # Basic

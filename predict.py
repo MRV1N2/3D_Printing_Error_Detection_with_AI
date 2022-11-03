@@ -9,4 +9,4 @@ from models import Yolov4
 
 model = Yolov4(class_name_path = os.path.join(FOLDER_PATH, 'class_names', 'coco_classes.txt'), weight_path='yolov4.weights')
 
-model.predict(os.path.join(FOLDER_PATH, 'img', 'test3.jpg'), random_color=True)
+model.predict(os.path.join(FOLDER_PATH, 'img', 'test.jpg'), random_color=True)

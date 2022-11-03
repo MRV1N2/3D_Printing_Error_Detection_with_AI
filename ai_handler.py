@@ -121,8 +121,8 @@ class Ai_handler(Ai_code):
         #  Create the documentation about this trial
 
         if True:
-            try:
-            #if True:
+            #try:
+            if True:
                 # Set the labels of the trial and their contents in the tensorboard dashboard
                 self._logdir = f'./doc/02_tensorboard_logs/{STUDY_NAME}_trial_nr_{trial.number}'
                 self._file_writer = tf.summary.create_file_writer(self._logdir)
@@ -177,9 +177,9 @@ class Ai_handler(Ai_code):
 
                 return rmse
 
-            except Exception as e:
-                print(f"Exception at objective: {e}, {sys.exc_info()}")
-                return 10
+            #except Exception as e:
+            #    print(f"Exception at objective: {e}, {sys.exc_info()}")
+            #    return 10
 
 
 class Optuna_Callback(keras.callbacks.Callback):
