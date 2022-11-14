@@ -8,3 +8,4 @@ keras~=2.10.0
 scikit-learn~=1.1.2
 optuna
 optuna-dashboard
+Pillow
