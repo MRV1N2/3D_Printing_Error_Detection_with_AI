@@ -1,6 +1,12 @@
 from utils import DataGenerator, read_annotation_lines
 from models import Yolov4
 import pathlib
+import tensorflow as tf
+
+# gpus = tf.config.list_physical_devices('GPU')
+# if gpus:
+#     for gpu in gpus:
+#         tf.config.experimental.set_virtual_device_configuration(gpu,[tf.config.experimental.VirtualDeviceConfiguration(memory_limit=6144)])
 
 class Ai_code():
 
@@ -9,9 +15,9 @@ class Ai_code():
         path = str(pathlib.Path().resolve())
         train_lines, val_lines = read_annotation_lines(f'{path}\\first_test_dataset\\anno.txt', test_size=0.1)
         FOLDER_PATH = f'{path}\\first_test_dataset\\images'
-        class_name_path = f'{path}\\first_test_dataset\\classes.txt'
-        self.data_gen_train = DataGenerator(train_lines, class_name_path, FOLDER_PATH)
-        self.data_gen_val = DataGenerator(val_lines, class_name_path, FOLDER_PATH)
+        self.class_name_path = f'{path}\\first_test_dataset\\classes.txt'
+        self.data_gen_train = DataGenerator(train_lines, self.class_name_path, FOLDER_PATH)
+        self.data_gen_val = DataGenerator(val_lines, self.class_name_path, FOLDER_PATH)
 
         return
 

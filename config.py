@@ -1,11 +1,11 @@
 
 # Optuna Settings
-STUDY_NAME = 'Examination_Hyperparameters_01'
+STUDY_NAME = 'Examination_Hyperparameters_10'
 OPTUNA_DATABASE_PATH = 'sqlite:///ai_3d_printing_error_detection.db'
 
 # Hyperparameters
 #TODO Wich Hyperparameters could we improve in this project
-BATCH_SIZE = [8, 16, 32, 64]
+BATCH_SIZE = 1
 IOU_LOSS_THRESH = [0.1, 0.9]
 IOU_THRESHOLD = [0.1, 0.9]
 SCORE_THRESHOLD = [0.1,0.9]
@@ -21,7 +21,7 @@ yolo_config = {
 
     # Training
     'iou_loss_thresh': 0.5,
-    'batch_size': 8,
+    'batch_size': 1, # 8,
     'num_gpu': 1,  # 2,
 
     # Inference
