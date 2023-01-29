@@ -1,0 +1,27 @@
+<annotation>
+	<folder></folder>
+	<filename>oNTU2QC_jpg.rf.068b7df50954ab42d3e79544d2926a1d.jpg</filename>
+	<path>oNTU2QC_jpg.rf.068b7df50954ab42d3e79544d2926a1d.jpg</path>
+	<source>
+		<database>roboflow.ai</database>
+	</source>
+	<size>
+		<width>416</width>
+		<height>416</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>fail</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<occluded>0</occluded>
+		<bndbox>
+			<xmin>188</xmin>
+			<xmax>322</xmax>
+			<ymin>201</ymin>
+			<ymax>382</ymax>
+		</bndbox>
+	</object>
+</annotation>

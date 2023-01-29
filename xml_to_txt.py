@@ -3,9 +3,9 @@ from glob import glob
 import os
 
 
-XML_PATH = 'first_test_dataset/Annotations'
-CLASSES_PATH = 'first_test_dataset/classes.txt'
-TXT_PATH = 'first_test_dataset/anno.txt'
+XML_PATH = 'online_dataset/trainAndValid/Annotations'
+CLASSES_PATH = 'online_dataset/trainAndValid/classes.txt'
+TXT_PATH = 'online_dataset/trainAndValid/anno.txt'
 
 
 '''loads the classes'''

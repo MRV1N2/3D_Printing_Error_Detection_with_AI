@@ -1,0 +1,4 @@
+# AP and precision/recall per class
+
+# mAP of all classes
+mAP = 14.71%

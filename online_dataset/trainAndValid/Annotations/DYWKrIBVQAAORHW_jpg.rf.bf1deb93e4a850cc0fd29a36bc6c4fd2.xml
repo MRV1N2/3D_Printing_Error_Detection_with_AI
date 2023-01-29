@@ -1,0 +1,27 @@
+<annotation>
+	<folder></folder>
+	<filename>DYWKrIBVQAAORHW_jpg.rf.bf1deb93e4a850cc0fd29a36bc6c4fd2.jpg</filename>
+	<path>DYWKrIBVQAAORHW_jpg.rf.bf1deb93e4a850cc0fd29a36bc6c4fd2.jpg</path>
+	<source>
+		<database>roboflow.ai</database>
+	</source>
+	<size>
+		<width>416</width>
+		<height>416</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>fail</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<occluded>0</occluded>
+		<bndbox>
+			<xmin>7</xmin>
+			<xmax>417</xmax>
+			<ymin>1</ymin>
+			<ymax>409</ymax>
+		</bndbox>
+	</object>
+</annotation>

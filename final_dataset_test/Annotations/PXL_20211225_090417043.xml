@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotation>
+<folder>images</folder>
+<filename>PXL_20211225_090417043.png</filename>
+<source>
+<database>MyDatabase</database>
+<annotation>COCO2017</annotation>
+<image>flickr</image>
+<flickrid>NULL</flickrid>
+<annotator>1</annotator>
+</source>
+<owner>
+<flickrid>NULL</flickrid>
+<name>Label Studio</name>
+</owner>
+<size>
+<width>1700</width>
+<height>1280</height>
+<depth>3</depth>
+</size>
+<segmented>0</segmented>
+<object>
+<name>Stringing or Oozing</name>
+<pose>Unspecified</pose>
+<truncated>0</truncated>
+<difficult>0</difficult>
+<bndbox>
+<xmin>336</xmin>
+<ymin>543</ymin>
+<xmax>773</xmax>
+<ymax>771</ymax>
+</bndbox>
+</object>
+<object>
+<name>Stringing or Oozing</name>
+<pose>Unspecified</pose>
+<truncated>0</truncated>
+<difficult>0</difficult>
+<bndbox>
+<xmin>764</xmin>
+<ymin>292</ymin>
+<xmax>1174</xmax>
+<ymax>569</ymax>
+</bndbox>
+</object>
+<object>
+<name>Stringing or Oozing</name>
+<pose>Unspecified</pose>
+<truncated>0</truncated>
+<difficult>0</difficult>
+<bndbox>
+<xmin>820</xmin>
+<ymin>1052</ymin>
+<xmax>1524</xmax>
+<ymax>1200</ymax>
+</bndbox>
+</object>
+<object>
+<name>Stringing or Oozing</name>
+<pose>Unspecified</pose>
+<truncated>0</truncated>
+<difficult>0</difficult>
+<bndbox>
+<xmin>419</xmin>
+<ymin>586</ymin>
+<xmax>871</xmax>
+<ymax>952</ymax>
+</bndbox>
+</object>
+</annotation>

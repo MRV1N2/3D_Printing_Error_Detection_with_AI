@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotation>
+<folder>images</folder>
+<filename>IMG_3874.png</filename>
+<source>
+<database>MyDatabase</database>
+<annotation>COCO2017</annotation>
+<image>flickr</image>
+<flickrid>NULL</flickrid>
+<annotator>1</annotator>
+</source>
+<owner>
+<flickrid>NULL</flickrid>
+<name>Label Studio</name>
+</owner>
+<size>
+<width>4032</width>
+<height>3024</height>
+<depth>3</depth>
+</size>
+<segmented>0</segmented>
+<object>
+<name>Spaghetti</name>
+<pose>Unspecified</pose>
+<truncated>0</truncated>
+<difficult>0</difficult>
+<bndbox>
+<xmin>175</xmin>
+<ymin>557</ymin>
+<xmax>2645</xmax>
+<ymax>3023</ymax>
+</bndbox>
+</object>
+<object>
+<name>Layer Shifting</name>
+<pose>Unspecified</pose>
+<truncated>0</truncated>
+<difficult>0</difficult>
+<bndbox>
+<xmin>1522</xmin>
+<ymin>390</ymin>
+<xmax>2572</xmax>
+<ymax>1676</ymax>
+</bndbox>
+</object>
+</annotation>

@@ -1,2 +1,8 @@
-# Pycharm Project Files
-.idea
+.idea/*
+__pycache__/*
+*/__pycache__/*
+doc/
+*.weights
+*.h5
+*.pkl
+*.weigths/

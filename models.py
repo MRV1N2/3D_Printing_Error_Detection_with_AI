@@ -10,7 +10,6 @@ from tensorflow.keras import layers, models, optimizers
 
 from custom_layers import yolov4_neck, yolov4_head, nms
 from utils import load_weights, get_detection_data, draw_bbox, voc_ap, draw_plot_func, read_txt_to_list
-from config import yolo_config
 from loss import yolo_loss
 
 
@@ -18,27 +17,27 @@ class Yolov4(object):
     def __init__(self,
                  weight_path=None,
                  class_name_path='coco_classes.txt',
-                 config=yolo_config,
+                 config=None,
                  ):
         assert config['img_size'][0] == config['img_size'][1], 'not support yet'
         assert config['img_size'][0] % config['strides'][-1] == 0, 'must be a multiple of last stride'
         self.class_names = [line.strip() for line in open(class_name_path).readlines()]
-        self.img_size = yolo_config['img_size']
+        self.img_size = config['img_size']
         self.num_classes = len(self.class_names)
         self.weight_path = weight_path
-        self.anchors = np.array(yolo_config['anchors']).reshape((3, 3, 2))
-        self.xyscale = yolo_config['xyscale']
-        self.strides = yolo_config['strides']
+        self.anchors = np.array(config['anchors']).reshape((3, 3, 2))
+        self.xyscale = config['xyscale']
+        self.strides = config['strides']
         self.output_sizes = [self.img_size[0] // s for s in self.strides]
         self.class_color = {name: list(np.random.random(size=3)*255) for name in self.class_names}
         # Training
-        self.max_boxes = yolo_config['max_boxes']
-        self.iou_loss_thresh = yolo_config['iou_loss_thresh']
-        self.config = yolo_config
+        self.max_boxes = config['max_boxes']
+        self.iou_loss_thresh = config['iou_loss_thresh']
+        self.config = config
         assert self.num_classes > 0, 'no classes detected!'
 
         tf.keras.backend.clear_session()
-        if yolo_config['num_gpu'] > 1:
+        if config['num_gpu'] > 1:
             mirrored_strategy = tf.distribute.MirroredStrategy()
             with mirrored_strategy.scope():
                 self.build_model(load_pretrained=True if self.weight_path else False)
@@ -72,7 +71,7 @@ class Yolov4(object):
                                                 iou_threshold=self.config['iou_threshold'],
                                                 score_threshold=self.config['score_threshold']))
 
-        if load_pretrained and self.weight_path and self.weight_path.endswith('.weights'):
+        if load_pretrained and self.weight_path:
             if self.weight_path.endswith('.weights'):
                 load_weights(self.yolo_model, self.weight_path)
                 print(f'load from {self.weight_path}')
@@ -122,8 +121,13 @@ class Yolov4(object):
         else:
             return detections
 
+    def predict_img_raw(self, raw_img):
+        raw_img_sq = np.squeeze(raw_img)
+        output_img, detections = self.predict_img(raw_img_sq, return_output=True, plot_img=False)
+        return output_img
+
     def predict(self, img_path, random_color=True, plot_img=True, figsize=(10, 10), show_text=True):
-        raw_img = cv2.imread(img_path)[:, :, ::-1]
+        raw_img = cv2.imread(img_path)[:, :, ::-1] #[:,:,::-1] macht bgr zu rgb
         return self.predict_img(raw_img, random_color, plot_img, figsize, show_text)
 
     def export_gt(self, annotation_path, gt_folder_path):
@@ -190,41 +194,45 @@ class Yolov4(object):
 
         gt_files = []
         for txt_file in ground_truth_files_list:
-            file_id = txt_file.split(".txt", 1)[0]
-            file_id = os.path.basename(os.path.normpath(file_id))
-            # check if there is a correspondent detection-results file
-            temp_path = os.path.join(pred_folder_path, (file_id + ".txt"))
-            assert os.path.exists(temp_path), "Error. File not found: {}\n".format(temp_path)
-            lines_list = read_txt_to_list(txt_file)
-            # create ground-truth dictionary
-            bounding_boxes = []
-            is_difficult = False
-            already_seen_classes = []
-            for line in lines_list:
-                class_name, left, top, right, bottom = line.split()
-                # check if class is in the ignore list, if yes skip
-                bbox = left + " " + top + " " + right + " " + bottom
-                bounding_boxes.append({"class_name": class_name, "bbox": bbox, "used": False})
-                # count that object
-                if class_name in gt_counter_per_class:
-                    gt_counter_per_class[class_name] += 1
-                else:
-                    # if class didn't exist yet
-                    gt_counter_per_class[class_name] = 1
-
-                if class_name not in already_seen_classes:
-                    if class_name in counter_images_per_class:
-                        counter_images_per_class[class_name] += 1
+            try:
+                file_id = txt_file.split(".txt", 1)[0]
+                file_id = os.path.basename(os.path.normpath(file_id))
+                # check if there is a correspondent detection-results file
+                temp_path = os.path.join(pred_folder_path, (file_id + ".txt"))
+                assert os.path.exists(temp_path), "Error. File not found: {}\n".format(temp_path)
+                lines_list = read_txt_to_list(txt_file)
+                # create ground-truth dictionary
+                bounding_boxes = []
+                is_difficult = False
+                already_seen_classes = []
+                for line in lines_list:
+                    class_name, left, top, right, bottom = line.split()
+                    # check if class is in the ignore list, if yes skip
+                    bbox = left + " " + top + " " + right + " " + bottom
+                    bounding_boxes.append({"class_name": class_name, "bbox": bbox, "used": False})
+                    # count that object
+                    if class_name in gt_counter_per_class:
+                        gt_counter_per_class[class_name] += 1
                     else:
                         # if class didn't exist yet
-                        counter_images_per_class[class_name] = 1
-                    already_seen_classes.append(class_name)
+                        gt_counter_per_class[class_name] = 1
+
+                    if class_name not in already_seen_classes:
+                        if class_name in counter_images_per_class:
+                            counter_images_per_class[class_name] += 1
+                        else:
+                            # if class didn't exist yet
+                            counter_images_per_class[class_name] = 1
+                        already_seen_classes.append(class_name)
+            except:
+                pass
 
             # dump bounding_boxes into a ".json" file
             new_temp_file = os.path.join(temp_json_folder_path, file_id+"_ground_truth.json") #TEMP_FILES_PATH + "/" + file_id + "_ground_truth.json"
             gt_files.append(new_temp_file)
             with open(new_temp_file, 'w') as outfile:
                 json.dump(bounding_boxes, outfile)
+
 
         gt_classes = list(gt_counter_per_class.keys())
         # let's sort the classes alphabetically
@@ -406,7 +414,7 @@ class Yolov4(object):
          Count total of detection-results
         """
         # iterate through all the files
-        det_counter_per_class = {}
+        det_counter_per_class = {'Spaghetti': 0, 'Stringing_or_Oozing':0, 'Layer_Shifting':0, 'fail':0}
         for txt_file in dr_files_list:
             # get lines to list
             lines_list = read_txt_to_list(txt_file)

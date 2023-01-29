@@ -34,7 +34,7 @@ class Ai_handler(Ai_code):
 
         self._last_best_study_value = 100000
         self._last_best_study_id = 0
-        self._study = optuna.create_study(direction="minimize",
+        self._study = optuna.create_study(direction="maximize",
                                 # directions=["maximize", "maximize"],
                                 # pruner=optuna.pruners.SuccessiveHalvingPruner(),
                                 study_name=STUDY_NAME,
@@ -160,6 +160,7 @@ class Ai_handler(Ai_code):
                     cp_callback = tf.keras.callbacks.ModelCheckpoint(filepath='./models/', save_weights_only=True, verbose=1, monitor='loss')
                     tb_callback = tf.keras.callbacks.TensorBoard(log_dir=self._logdir, histogram_freq=1,profile_batch=0)
                     op_callback = Optuna_Callback(trial)
+                    early_stopping = tf.keras.callbacks.EarlyStopping()
                     callbacks = [tb_callback]
 
                     trial_hparams.update(self._config)
@@ -170,7 +171,7 @@ class Ai_handler(Ai_code):
 
                 # Only keep the best attempt in this study in Tensorboard
                 if rmse > self._last_best_study_value and False:
-                    shutil.rmtree(f'./doc/02_tensorboard_ogs/{STUDY_NAME}_trial_nr_{trial.number}')
+                    shutil.rmtree(f'./doc/02_tensorboard_logs/{STUDY_NAME}_trial_nr_{trial.number}') #TODO: Soll das _ogs heißen?
                 else:
                     self._last_best_study_value = rmse
                     self._last_best_study_id = trial.number

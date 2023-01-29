@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotation>
+<folder>images</folder>
+<filename>image-asset_img_5eb0af2d092e0.png</filename>
+<source>
+<database>MyDatabase</database>
+<annotation>COCO2017</annotation>
+<image>flickr</image>
+<flickrid>NULL</flickrid>
+<annotator>1</annotator>
+</source>
+<owner>
+<flickrid>NULL</flickrid>
+<name>Label Studio</name>
+</owner>
+<size>
+<width>960</width>
+<height>736</height>
+<depth>3</depth>
+</size>
+<segmented>0</segmented>
+<object>
+<name>Spaghetti</name>
+<pose>Unspecified</pose>
+<truncated>0</truncated>
+<difficult>0</difficult>
+<bndbox>
+<xmin>18</xmin>
+<ymin>98</ymin>
+<xmax>453</xmax>
+<ymax>456</ymax>
+</bndbox>
+</object>
+</annotation>

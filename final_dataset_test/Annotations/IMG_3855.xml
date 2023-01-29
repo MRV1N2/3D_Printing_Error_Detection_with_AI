@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotation>
+<folder>images</folder>
+<filename>IMG_3855.png</filename>
+<source>
+<database>MyDatabase</database>
+<annotation>COCO2017</annotation>
+<image>flickr</image>
+<flickrid>NULL</flickrid>
+<annotator>1</annotator>
+</source>
+<owner>
+<flickrid>NULL</flickrid>
+<name>Label Studio</name>
+</owner>
+<size>
+<width>4032</width>
+<height>3024</height>
+<depth>3</depth>
+</size>
+<segmented>0</segmented>
+<object>
+<name>Stringing or Oozing</name>
+<pose>Unspecified</pose>
+<truncated>0</truncated>
+<difficult>0</difficult>
+<bndbox>
+<xmin>3063</xmin>
+<ymin>22</ymin>
+<xmax>3410</xmax>
+<ymax>2468</ymax>
+</bndbox>
+</object>
+<object>
+<name>Stringing or Oozing</name>
+<pose>Unspecified</pose>
+<truncated>0</truncated>
+<difficult>0</difficult>
+<bndbox>
+<xmin>4</xmin>
+<ymin>4</ymin>
+<xmax>4031</xmax>
+<ymax>3023</ymax>
+</bndbox>
+</object>
+</annotation>

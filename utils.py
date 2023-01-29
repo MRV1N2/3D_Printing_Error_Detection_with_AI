@@ -5,7 +5,7 @@ import operator
 import matplotlib.pyplot as plt
 import os
 
-from keras.utils import Sequence
+from keras.utils.data_utils import Sequence
 from sklearn.model_selection import train_test_split
 from config import yolo_config
 

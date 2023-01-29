@@ -1,0 +1,27 @@
+<annotation>
+	<folder></folder>
+	<filename>Capture-d-ecran--447-_jpg.rf.78c4a2a3356cead8a417c25dc7774f1d.jpg</filename>
+	<path>Capture-d-ecran--447-_jpg.rf.78c4a2a3356cead8a417c25dc7774f1d.jpg</path>
+	<source>
+		<database>roboflow.ai</database>
+	</source>
+	<size>
+		<width>416</width>
+		<height>416</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>fail</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<occluded>0</occluded>
+		<bndbox>
+			<xmin>30</xmin>
+			<xmax>174</xmax>
+			<ymin>106</ymin>
+			<ymax>239</ymax>
+		</bndbox>
+	</object>
+</annotation>
